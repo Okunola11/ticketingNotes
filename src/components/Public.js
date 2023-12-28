@@ -8,12 +8,12 @@ const Public = () => {
           Welcome to <span className="nowrap">Chun L. Repairs!</span>
         </h1>
       </header>
-      <main className="public_main">
+      <main className="public__main">
         <p>
           Located in the beautiful city of Lagos, Chun L. Repairs provides
           technical experts ready to all your tech repair requirements
         </p>
-        <address className="public_addr">
+        <address className="public__addr">
           Chun L. Repairs <br />
           555 Anthony Drive <br />
           Victoria Island, LG 12345 <br />
