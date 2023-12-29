@@ -16,12 +16,19 @@
   --LINK-HOVER: rgba(245, 245, 245, 0.411);
   --BORDER-COLOR: #fff;
   --INACTIVE: lightgray;
-  --TABLE-COLOR: #fff;
+  --TABLE-COLOR: #000;
+  --TABLE-BGCOLOR: #fff;
+  --INACTIVE: lightgray;
 }
 
 /* || UTILITY CLASSES*/
 .nowrap {
   white-space: nowrap;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
 }
 
 .errmsg {
@@ -131,3 +138,48 @@ a:focus {
   height: auto;
   width: auto;
 }
+
+/* || USERLISTS TABLE*/
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+.table {
+  font-size: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 0.1em;
+  margin-top: 0.5em;
+  color: var(--TABLE-COLOR);
+}
+
+.table__th,
+.table__cell {
+  text-align: left;
+  border: 1px solid var(--TABLE-COLOR);
+  padding: 0.5em;
+  background: var(--TABLE-BGCOLOR);
+}
+
+.table__th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.table__cell:last-child {
+  display: grid;
+  place-content: center;
+}
+
+.table__cell--inactive {
+  background-color: var(--INACTIVE);
+}
+
+/* || ADD USERS FORM*/

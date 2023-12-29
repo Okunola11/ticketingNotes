@@ -20,7 +20,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         });
         return usersAdapter.setAll(initialState, loadedData);
       },
-      providesTags: (result, arg, erro) => {
+      providesTags: (result, arg, error) => {
         if (result?.ids) {
           return [
             { type: "User", id: "LIST" },
@@ -37,11 +37,12 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           ...initialData,
         },
       }),
+      providesTags: (result, error, arg) => [{ type: "User", id: "LIST" }],
     }),
   }),
 });
 
-export const { useGetUsersQuery } = usersApiSlice;
+export const { useGetUsersQuery, useCreateNewUserMutation } = usersApiSlice;
 
 // select all gotten users
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
