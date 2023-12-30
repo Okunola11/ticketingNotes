@@ -71,6 +71,7 @@ const NewUserForm = () => {
       setUsername("");
       setPassword("");
       setMatchPassword("");
+      setRoles([]);
       setTimeout(() => {
         navigate("/dash/users");
       }, 5000);
@@ -97,7 +98,7 @@ const NewUserForm = () => {
 
       <form onSubmit={handleSubmit} className="form">
         {/*Username Form Input*/}
-        <label htmlFor="username" aria-live="assertive">
+        <label className="form__label" htmlFor="username" aria-live="assertive">
           Username:
           <span className={validUsername ? "valid" : "hide"}>
             <FontAwesomeIcon icon={faCheck} />
@@ -107,6 +108,7 @@ const NewUserForm = () => {
           </span>
         </label>
         <input
+          className="form__input"
           type="text"
           id="username"
           ref={usernameRef}
@@ -132,7 +134,7 @@ const NewUserForm = () => {
           <br />
         </p>
         {/*Password Form Input*/}
-        <label htmlFor="password" aria-live="assertive">
+        <label className="form__label" htmlFor="password" aria-live="assertive">
           Password:
           <span className={validPassword ? "valid" : "hide"}>
             <FontAwesomeIcon icon={faCheck} />
@@ -142,6 +144,7 @@ const NewUserForm = () => {
           </span>
         </label>
         <input
+          className="form__input"
           type="password"
           id="password"
           value={password}
@@ -161,7 +164,7 @@ const NewUserForm = () => {
           Allowed special characters: ! @ # $ %
         </p>
         {/*Password Match Form Input*/}
-        <label htmlFor="confirmPassword">
+        <label className="form__label" htmlFor="confirmPassword">
           Confirm Password:
           <span
             className={validMatchPassword && validPassword ? "valid" : "hide"}
@@ -175,6 +178,7 @@ const NewUserForm = () => {
           </span>
         </label>
         <input
+          className="form__input"
           type="password"
           id="confirmPassword"
           value={matchPassword}
@@ -191,10 +195,11 @@ const NewUserForm = () => {
           Must be the same as Password
         </p>
         {/* Selecting Roles*/}
-        <label htmlFor="roles" className="form__roles">
+        <label className="form__label form__roles" htmlFor="roles">
           Roles:
         </label>
         <select
+          className="form__select"
           name="roles"
           id="roles"
           multiple={true}
@@ -204,21 +209,23 @@ const NewUserForm = () => {
         >
           {rolesOption}
         </select>
+        <div className="form__buttin">
+          <button
+            disabled={
+              !validUsername ||
+              !validMatchPassword ||
+              !validPassword ||
+              !roles.length ||
+              isLoading
+                ? true
+                : false
+            }
+            className="form__button"
+          >
+            Add User
+          </button>
+        </div>
 
-        <button
-          disabled={
-            !validUsername ||
-            !validMatchPassword ||
-            !validPassword ||
-            !roles.length ||
-            isLoading
-              ? true
-              : false
-          }
-          className="form__button"
-        >
-          Add User
-        </button>
         <p className="form__p">Already Registered?</p>
         <p className="form__p">
           <Link to="/login">Sign In</Link>

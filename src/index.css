@@ -191,12 +191,10 @@ tr {
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
-  max-width: 500px;
+  max-width: 800px;
   margin: 0 auto;
 
   h2 {
-    padding: 0.5em;
-    text-align: center;
     background-color: var(--BGCOLOR);
   }
 }
@@ -204,26 +202,57 @@ tr {
 .form {
   display: flex;
   flex-flow: column nowrap;
-  padding: 0.1em;
+  flex-grow: 1;
+}
 
-  label {
-    margin-bottom: 0.1em;
-  }
+.form__label {
+  margin-bottom: 0.1em;
+}
 
-  input {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-size-adjust: initial;
-  }
+.form__input {
+  padding: 0.5em;
+  margin-bottom: 1rem;
+}
 
-  .form__button {
-    margin-bottom: 0.5em;
-  }
+.form__select {
+  width: fit-content;
+  padding: 0.25rem;
+}
 
-  .form__p {
-    text-align: center;
-    margin-bottom: 0.5em;
-  }
+.form__active {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__active--button {
+  width: 24px;
+  height: 24px;
+}
+
+.form__buttin {
+  display: grid;
+  place-content: center;
+}
+
+.form__icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 0.5rem;
+}
+
+.form__button {
+  margin-bottom: 0.5em;
+  width: 100px;
+  height: 48px;
+  text-align: center;
+  color: #0f172a;
+  background-color: antiquewhite;
+  margin-top: 1rem;
+}
+
+.form__p {
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 .hide {
@@ -243,4 +272,9 @@ tr {
 .instructions {
   color: var(--INVALID);
   font-size: 1rem;
+}
+
+.form__heading {
+  display: flex;
+  justify-content: space-between;
 }
