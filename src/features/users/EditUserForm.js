@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUpdateUserMutation } from "./usersApiSlice";
+import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice";
 import ROLES from "../../components/Roles";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,11 @@ const username_REGEX = /^[A-z0-9]{3,20}$/;
 const EditUserForm = ({ user }) => {
   const [updateUser, { isLoading, isSuccess, isError, error }] =
     useUpdateUserMutation();
+  const [
+    deleteUser,
+    { isSuccess: isDelSuccess, isError: isDelError, error: delError },
+  ] = useDeleteUserMutation();
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState(user.username);
@@ -31,13 +36,13 @@ const EditUserForm = ({ user }) => {
   }, [password]);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || isDelSuccess) {
       setUsername("");
       setPassword("");
       setRoles([]);
       navigate("/dash/users");
     }
-  }, [isSuccess, navigate]);
+  }, [isSuccess, isDelSuccess, navigate]);
 
   const onUsernameChange = (e) => setUsername(e.target.value);
   const onPasswordChange = (e) => setPassword(e.target.value);
@@ -72,9 +77,17 @@ const EditUserForm = ({ user }) => {
     }
   };
 
+  const handleDelete = async () => {
+    await deleteUser({ id: user.id });
+  };
+
+  const errClass = isError || isDelError ? "errmsg" : "hide";
+  const errContent = (error?.data?.message || delError?.data?.message) ?? "";
+
   const content = (
     <form className="newUser" onSubmit={(e) => e.preventDefault()}>
-      <p className={isError ? "errmsg" : "hide"}>{error?.data?.message}</p>
+      <p className={errClass}>{errContent}</p>
+
       <div className="form__heading">
         <div>
           <h2>Edit User</h2>
@@ -88,7 +101,7 @@ const EditUserForm = ({ user }) => {
           >
             <FontAwesomeIcon icon={faSave} />
           </button>
-          <button type="button" className="form__icon">
+          <button type="button" className="form__icon" onClick={handleDelete}>
             <FontAwesomeIcon icon={faTrashAlt} />
           </button>
         </div>
