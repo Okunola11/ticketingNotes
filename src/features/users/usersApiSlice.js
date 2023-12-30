@@ -37,12 +37,17 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           ...initialData,
         },
       }),
-      providesTags: (result, error, arg) => [{ type: "User", id: "LIST" }],
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: "LIST" }],
     }),
   }),
 });
 
-export const { useGetUsersQuery, useCreateNewUserMutation } = usersApiSlice;
+export const {
+  useGetUsersQuery,
+  useCreateNewUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = usersApiSlice;
 
 // select all gotten users
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
