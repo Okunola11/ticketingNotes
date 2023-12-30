@@ -39,6 +39,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: "LIST" }],
     }),
+    updateUser: builder.mutation({
+      query: (initialData) => ({
+        url: `/users/${initialData.id}`,
+        method: "PATCH",
+        body: { ...initialData },
+        invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+      }),
+    }),
+    deleteUser: builder.mutation({
+      query: ({ id }) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+        body: { id },
+        invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+      }),
+    }),
   }),
 });
 
