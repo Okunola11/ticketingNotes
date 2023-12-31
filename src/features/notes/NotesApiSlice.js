@@ -5,7 +5,7 @@ const notesAdapter = createEntityAdapter({});
 
 const initialState = notesAdapter.getInitialState();
 
-export const NotesAPiSlice = apiSlice.injectEndpoints({
+export const notesAPiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getNotes: builder.query({
       query: () => "/notes",
@@ -17,7 +17,7 @@ export const NotesAPiSlice = apiSlice.injectEndpoints({
           note.id = note._id;
           return note;
         });
-        return notesAdapter.setAll(loadedData, initialState);
+        return notesAdapter.setAll(initialState, loadedData);
       },
       providesTags: (result, error, arg) => {
         if (result?.ids) {
@@ -62,10 +62,10 @@ export const {
   useCreateNewNoteMutation,
   useUpdateNoteMutation,
   useDeleteNoteMutation,
-} = NotesAPiSlice;
+} = notesAPiSlice;
 
 // select all gotten notes
-export const selectNotesResult = NotesAPiSlice.endpoints.getNotes.select();
+export const selectNotesResult = notesAPiSlice.endpoints.getNotes.select();
 
 // creating a memoised selector
 const selectNotesData = createSelector(
