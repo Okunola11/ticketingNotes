@@ -26,15 +26,15 @@ const NotesList = () => {
       : null;
 
     content = (
-      <table className="table--note">
+      <table className="table table--note">
         <thead className="table__thead">
           <tr>
-            <th className="table__th">Status</th>
-            <th className="table__th">Created</th>
-            <th className="table__th">Updated</th>
-            <th className="table__th">Title</th>
-            <th className="table__th">Owner</th>
-            <th className="table__th">Edit</th>
+            <th className="table__th note__status">Status</th>
+            <th className="table__th note__created">Created</th>
+            <th className="table__th note__updated">Updated</th>
+            <th className="table__th note__title">Title</th>
+            <th className="table__th note__username">Owner</th>
+            <th className="table__th note__edit">Edit</th>
           </tr>
         </thead>
         <tbody>{tableData}</tbody>

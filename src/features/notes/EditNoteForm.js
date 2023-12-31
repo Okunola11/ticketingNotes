@@ -44,6 +44,15 @@ const EditNoteForm = ({ note, users }) => {
   const errClass = isError || isDelError ? "errmsg" : "hide";
   const err = error?.data?.message || delError?.data?.message;
 
+  const created = new Date(note.createdAt).toLocaleString("en-us", {
+    day: "numeric",
+    month: "long",
+  });
+  const updated = new Date(note.updatedAt).toLocaleString("en-us", {
+    day: "numeric",
+    month: "long",
+  });
+
   const handleUpdate = async () => {
     await updateNote({ id: note.id, user: userId, title, text, completed });
   };
@@ -56,7 +65,7 @@ const EditNoteForm = ({ note, users }) => {
     <section className="edit">
       <p className={errClass}>{err}</p>
       <form className="edit__form" onSubmit={(e) => e.preventDefault()}>
-        <h2>Edit notes</h2>
+        <h2>Edit notes #{note.ticket}</h2>
         {/* || TITLE*/}
         <label htmlFor="title">Title</label>
         <input type="text" id="title" value={title} onChange={onTitleChange} />
@@ -92,6 +101,10 @@ const EditNoteForm = ({ note, users }) => {
         >
           {options}
         </select>
+        <div className="form__stat">
+          <p className="form__created">Created: {created}</p>
+          <p className="form__updated">Updated: {updated}</p>
+        </div>
       </form>
       <button disabled={!canSave} type="button" onClick={handleUpdate}>
         Update

@@ -26,10 +26,10 @@ const Note = ({ noteId }) => {
     const content = (
       <tr>
         <td className={`table__cell ${statusClass}`}>{noteStatus}</td>
-        <td className="table__cell">{created}</td>
-        <td className="table__cell">{updated}</td>
-        <td className="table__cell">{note.title}</td>
-        <td className="table__cell">{note.username}</td>
+        <td className="table__cell note__created">{created}</td>
+        <td className="table__cell note__updated">{updated}</td>
+        <td className="table__cell note__title">{note.title}</td>
+        <td className="table__cell note__username">{note.username}</td>
         <td className="table__cell">
           <button onClick={handleEdit}>Edit</button>
         </td>

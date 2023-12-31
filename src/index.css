@@ -162,16 +162,6 @@ tr {
   color: var(--TABLE-COLOR);
 }
 
-.table--note {
-  font-size: 1rem;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.1em;
-  margin-top: 0.5em;
-  color: var(--TABLE-COLOR);
-}
-
 .table__th,
 .table__cell {
   text-align: left;
@@ -180,11 +170,10 @@ tr {
   background: var(--TABLE-BGCOLOR);
 }
 
-.table__th {
+.table__thead {
   position: sticky;
   top: 0;
   z-index: 1;
-  font-size: 1.25rem;
   font-weight: bold;
 }
 
@@ -195,6 +184,12 @@ tr {
 
 .table__cell--inactive {
   background-color: var(--INACTIVE);
+}
+
+.note__created,
+.note__updated,
+.note__username {
+  display: none;
 }
 
 .note--completed {
@@ -318,6 +313,13 @@ tr {
   }
 }
 
+.form__stat {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+  background-color: var(--BGCOLOR);
+}
+
 .completed {
   display: flex;
   justify-content: space-between;
@@ -332,4 +334,31 @@ tr {
   margin-top: 0.5rem;
   color: var(--TABLE-BGCOLOR);
   background-color: var(--INVALID);
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  .dash-header {
+    padding: 0.1em;
+  }
+
+  .table--note {
+    font-size: 1.5rem;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .note__created,
+  .note__updated,
+  .note__username {
+    display: block;
+  }
 }
