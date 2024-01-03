@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "./authSlice";
 
 const Welcome = () => {
   const date = new Date();
@@ -7,10 +9,12 @@ const Welcome = () => {
     timeStyle: "long",
   }).format(date);
 
+  const username = useSelector(selectCurrentUser);
+
   const content = (
     <section className="welcome">
       <p>{today}</p>
-      <h1>Welcome!</h1>
+      <h2>Welcome {username}!</h2>
       <p>
         <Link to="/dash/notes">View techNotes</Link>
       </p>
