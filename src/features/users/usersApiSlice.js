@@ -20,7 +20,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         });
         return usersAdapter.setAll(initialState, loadedData);
       },
-      keepUnusedDataFor: 5,
       providesTags: (result, arg, error) => {
         if (result?.ids) {
           return [

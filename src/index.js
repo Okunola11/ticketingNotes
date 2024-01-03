@@ -10,8 +10,8 @@ import { Provider } from "react-redux";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-/* store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
-store.dispatch(notesAPiSlice.endpoints.getNotes.initiate()); */
+store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
+store.dispatch(notesAPiSlice.endpoints.getNotes.initiate());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
