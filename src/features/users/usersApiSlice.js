@@ -13,12 +13,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         return response.status === 200 && !result.isError;
       },
       transformResponse: (responseData) => {
+        console.log(responseData);
         const loadedData = responseData.map((user) => {
           user.id = user._id;
           return user;
         });
         return usersAdapter.setAll(initialState, loadedData);
       },
+      keepUnusedDataFor: 5,
       providesTags: (result, arg, error) => {
         if (result?.ids) {
           return [

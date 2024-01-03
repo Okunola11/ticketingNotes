@@ -362,3 +362,26 @@ tr {
     display: block;
   }
 }
+
+/* || Login Page*/
+.login {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  max-width: 800px;
+}
+
+.login__form {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.login__input {
+  padding: 0.5em;
+}
+
+.login p {
+  background-color: var(--BORDER-COLOR);
+}
