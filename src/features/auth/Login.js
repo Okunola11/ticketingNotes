@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
+import usePersist from "../../hooks/usePersist";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [persist, setPersist] = usePersist();
 
   useEffect(() => {
     userRef.current.focus();
@@ -28,6 +30,7 @@ const Login = () => {
 
   const onUsernameChange = (e) => setUsername(e.target.value);
   const onPasswordChange = (e) => setPassword(e.target.value);
+  const handleToggle = () => setPersist((prev) => !prev);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,21 +45,21 @@ const Login = () => {
       setPassword("");
       navigate("/dash");
     } catch (err) {
-      if (!err.originalStatus) {
+      if (!err.status) {
         setErrMsg("No response from server");
-      } else if (err.originalStatus === 400) {
+      } else if (err.status === 400) {
         setErrMsg("Missing username or password");
-      } else if (err.originalStatus === 401) {
+      } else if (err.status === 401) {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login Failed");
       }
-      /* errRef.current.focus(); */
+      /*   errRef.current.focus(); */
     }
   };
 
   const content = (
-    <section className="login">
+    <main className="login">
       <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
         {errMsg}
       </p>
@@ -83,8 +86,16 @@ const Login = () => {
         />
 
         <button>Login</button>
+
+        <label htmlFor="persist">Trust this device?</label>
+        <input
+          type="checkbox"
+          id="persist"
+          checked={persist}
+          onChange={handleToggle}
+        />
       </form>
-    </section>
+    </main>
   );
 
   return isLoading ? <p>Loading...</p> : content;

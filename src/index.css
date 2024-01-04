@@ -35,11 +35,12 @@
 
 .errmsg {
   display: inline-block;
+  font-size: 1.25rem;
   padding: 0.25em;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
   color: var(--ERROR);
-  background-color: var(--TABLE-COLOR);
+  background-color: var(--COLOR);
   text-align: center;
 }
 
