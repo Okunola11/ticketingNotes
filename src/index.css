@@ -127,6 +127,22 @@ a:focus {
   padding: 0 0.5em;
 }
 
+.dash-header__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dash-header__nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icon-button {
+  min-width: 40px;
+  height: 40px;
+  margin: 0.1rem 0;
+}
+
 .dash-footer {
   position: sticky;
   bottom: 0;
