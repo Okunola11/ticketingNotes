@@ -9,7 +9,7 @@ const NewNote = () => {
   if (users?.length) {
     content = <NewNoteForm users={users} />;
   } else {
-    content = <p>Loading...</p>;
+    content = <p>Currently not available</p>;
   }
 
   return content;

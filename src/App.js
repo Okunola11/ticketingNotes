@@ -35,10 +35,16 @@ function App() {
                 <Route path="new" element={<NewNote />} />
               </Route>
 
-              <Route path="users">
-                <Route index element={<UsersList />} />
-                <Route path="add" element={<NewUserForm />} />
-                <Route path=":id" element={<EditUser />} />
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[ROLES.Admin, ROLES.Manager]} />
+                }
+              >
+                <Route path="users">
+                  <Route index element={<UsersList />} />
+                  <Route path="add" element={<NewUserForm />} />
+                  <Route path=":id" element={<EditUser />} />
+                </Route>
               </Route>
             </Route>
           </Route>
