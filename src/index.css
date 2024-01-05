@@ -132,6 +132,10 @@ a:focus {
   justify-content: space-between;
 }
 
+.dash-header__container--small {
+  max-width: 800px;
+}
+
 .dash-header__nav {
   display: flex;
   flex-grow: 1;

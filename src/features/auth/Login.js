@@ -45,11 +45,11 @@ const Login = () => {
       setPassword("");
       navigate("/dash");
     } catch (err) {
-      if (!err.status) {
+      if (!err.originalStatus) {
         setErrMsg("No response from server");
-      } else if (err.status === 400) {
+      } else if (err.originalStatus === 400) {
         setErrMsg("Missing username or password");
-      } else if (err.status === 401) {
+      } else if (err.originalStatus === 401) {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login Failed");
@@ -61,7 +61,11 @@ const Login = () => {
   const content = (
     <>
       <header>
-        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+        <p
+          ref={errRef}
+          className={errMsg ? "errmsg" : "offscreen"}
+          style={{ display: "block" }}
+        >
           {errMsg}
         </p>
         <h1 className="login__h1">Employee Login</h1>

@@ -14,7 +14,19 @@ const useAuth = () => {
 
     const isAdmin = roles.includes("Admin") ? true : false;
 
-    return { username, roles: [], isManager, isAdmin };
+    let status = "Employer";
+    if (isAdmin) status = "Admin";
+    if (isManager) status = "Manager";
+
+    return { username, roles, isManager, isAdmin, status };
+  } else {
+    return {
+      username: "",
+      roles: [],
+      isManager: false,
+      isAdmin: false,
+      status: "Employer",
+    };
   }
 };
 export default useAuth;
