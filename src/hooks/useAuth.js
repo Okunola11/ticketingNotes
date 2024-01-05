@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 
 const useAuth = () => {
   const token = useSelector(selectCurrentToken);
-  console.log(token);
 
   if (token) {
     const decode = jwtDecode(token);
@@ -14,10 +13,6 @@ const useAuth = () => {
     const isManager = roles.includes("Manager") ? true : false;
 
     const isAdmin = roles.includes("Admin") ? true : false;
-    console.log(username);
-    console.log(roles);
-    console.log(isManager);
-    console.log(isAdmin);
 
     return { username, roles: [], isManager, isAdmin };
   }
