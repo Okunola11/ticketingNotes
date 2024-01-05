@@ -11,6 +11,8 @@ import {
 
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";
 
+import useAuth from "../hooks/useAuth";
+
 const DASH_REGEX = /^\/dash(\/)?$/;
 const USERS_REGEX = /^\/dash\/users(\/)?$/;
 const NOTES_REGEX = /^\/dash\/notes(\/)?$/;
@@ -18,6 +20,10 @@ const NOTES_REGEX = /^\/dash\/notes(\/)?$/;
 const DashHeader = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const { isManager, isAdmin } = useAuth();
+  console.log(isManager);
+  console.log(isAdmin);
 
   const [sendLogout, { isLoading, isSuccess, isError, error }] =
     useSendLogoutMutation();
@@ -103,16 +109,18 @@ const DashHeader = () => {
   }
 
   let usersButton = null;
-  if (!USERS_REGEX.test(pathname) && pathname.includes("/dash")) {
-    usersButton = (
-      <button
-        className="icon-button"
-        title="Users"
-        onClick={onUsersButtonClicked}
-      >
-        <FontAwesomeIcon icon={faUserGear} />
-      </button>
-    );
+  if (isManager || isAdmin) {
+    if (!USERS_REGEX.test(pathname) && pathname.includes("/dash")) {
+      usersButton = (
+        <button
+          className="icon-button"
+          title="Users"
+          onClick={onUsersButtonClicked}
+        >
+          <FontAwesomeIcon icon={faUserGear} />
+        </button>
+      );
+    }
   }
 
   const buttonContent = isLoading ? (
