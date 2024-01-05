@@ -59,43 +59,49 @@ const Login = () => {
   };
 
   const content = (
-    <main className="login">
-      <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-        {errMsg}
-      </p>
+    <>
+      <header>
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+          {errMsg}
+        </p>
+        <h1 className="login__h1">Employee Login</h1>
+      </header>
+      <main className="login">
+        <form className="login__form" onSubmit={handleSubmit}>
+          <input
+            className="login__input"
+            type="text"
+            ref={userRef}
+            autoComplete="off"
+            placeholder="username"
+            required
+            value={username}
+            onChange={onUsernameChange}
+          />
+          <input
+            className="login__input"
+            type="password"
+            value={password}
+            required
+            placeholder="password"
+            onChange={onPasswordChange}
+          />
 
-      <form className="login__form" onSubmit={handleSubmit}>
-        <h2 className="login__h2">Login</h2>
-        <input
-          className="login__input"
-          type="text"
-          ref={userRef}
-          autoComplete="off"
-          placeholder="username"
-          required
-          value={username}
-          onChange={onUsernameChange}
-        />
-        <input
-          className="login__input"
-          type="password"
-          value={password}
-          required
-          placeholder="password"
-          onChange={onPasswordChange}
-        />
+          <button>Login</button>
 
-        <button>Login</button>
-
-        <label htmlFor="persist">Trust this device?</label>
-        <input
-          type="checkbox"
-          id="persist"
-          checked={persist}
-          onChange={handleToggle}
-        />
-      </form>
-    </main>
+          <div className="form__active">
+            <label htmlFor="persist">Trust this device?</label>
+            <input
+              type="checkbox"
+              id="persist"
+              checked={persist}
+              onChange={handleToggle}
+              className="form__active--button"
+            />
+          </div>
+        </form>
+      </main>
+    </>
   );
 
   return isLoading ? <p>Loading...</p> : content;

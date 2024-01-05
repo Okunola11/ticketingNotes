@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "./authSlice";
+import useAuth from "../../hooks/useAuth";
 
 const Welcome = () => {
   const date = new Date();
@@ -9,7 +8,8 @@ const Welcome = () => {
     timeStyle: "long",
   }).format(date);
 
-  const username = useSelector(selectCurrentUser);
+  // I was using the selectCurrentUser from authSlice for the username before but had to remove it because username was not being sent back or saved to setCredentials from the refresh endpoint. The useAuth() hook solves this.
+  const { username } = useAuth();
 
   const content = (
     <section className="welcome">

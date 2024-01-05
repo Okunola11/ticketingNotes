@@ -255,10 +255,11 @@ tr {
 
 .form__active {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .form__active--button {
+  margin-left: 1rem;
   width: 24px;
   height: 24px;
 }
@@ -385,22 +386,27 @@ tr {
 }
 
 /* || Login Page*/
+.login__h1 {
+  padding: 0.2rem;
+}
 .login {
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
   max-width: 800px;
+  padding: 0.2rem;
 }
 
 .login__form {
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .login__input {
   padding: 0.5em;
+  border-radius: 15px;
 }
 
 .login p {
