@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useUpdateNoteMutation, useDeleteNoteMutation } from "./NotesApiSlice";
 import { useNavigate } from "react-router-dom";
 
+import useAuth from "../../hooks/useAuth";
+
 const EditNoteForm = ({ note, users }) => {
+  const { isManager, isAdmin } = useAuth();
+
   const [updateNote, { isLoading, isSuccess, isError, error }] =
     useUpdateNoteMutation();
   const [
@@ -86,7 +90,7 @@ const EditNoteForm = ({ note, users }) => {
             className="completed__input"
             type="checkbox"
             id="completed"
-            value={completed}
+            checked={completed}
             onChange={onCompletedChange}
           />
         </label>
@@ -109,9 +113,11 @@ const EditNoteForm = ({ note, users }) => {
       <button disabled={!canSave} type="button" onClick={handleUpdate}>
         Update
       </button>
-      <button type="button" className="edit__del" onClick={handleDelete}>
-        Delete Note
-      </button>
+      {(isManager || isAdmin) && (
+        <button type="button" className="edit__del" onClick={handleDelete}>
+          Delete Note
+        </button>
+      )}
     </section>
   );
 
