@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { memo } from "react";
 
 const User = ({ userId }) => {
   const navigate = useNavigate();
@@ -29,4 +30,5 @@ const User = ({ userId }) => {
     );
   } else return null;
 };
-export default User;
+const memeoisedUser = memo(User);
+export default memeoisedUser;

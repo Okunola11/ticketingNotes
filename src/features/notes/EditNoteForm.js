@@ -43,7 +43,7 @@ const EditNoteForm = ({ note, users }) => {
   });
   console.log(options);
 
-  const canSave = [title, text, completed, userId].every(Boolean) && !isLoading;
+  const canSave = [title, text, userId].every(Boolean) && !isLoading;
 
   const errClass = isError || isDelError ? "errmsg" : "hide";
   const err = error?.data?.message || delError?.data?.message;

@@ -133,7 +133,7 @@ const EditUserForm = ({ user }) => {
           className="form__active--button"
           type="checkbox"
           id="active"
-          value={active}
+          checked={active}
           onChange={onActiveChange}
         />
       </label>

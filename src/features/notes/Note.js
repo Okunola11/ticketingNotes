@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectNotesById } from "./NotesApiSlice";
 
 import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 
 const Note = ({ noteId }) => {
   const navigate = useNavigate();
@@ -39,4 +40,6 @@ const Note = ({ noteId }) => {
     return content;
   } else return null;
 };
-export default Note;
+
+const memoisedNote = memo(Note);
+export default memoisedNote;
