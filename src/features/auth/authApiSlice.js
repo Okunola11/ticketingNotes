@@ -33,8 +33,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await queryFulfilled;
-          console.log(data);
+          //const { data } =
+          await queryFulfilled;
+          //console.log(data);
           setTimeout(() => {
             dispatch(logOut()); // Only when I put a delay to logOut did the mutation confirm it had received
             dispatch(apiSlice.util.resetApiState()); // data from a successful call {i.e. sending isSuccess}.

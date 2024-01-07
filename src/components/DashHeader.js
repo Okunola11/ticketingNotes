@@ -22,8 +22,6 @@ const DashHeader = () => {
   const { pathname } = useLocation();
 
   const { isManager, isAdmin } = useAuth();
-  console.log(isManager);
-  console.log(isAdmin);
 
   const [sendLogout, { isLoading, isSuccess, isError, error }] =
     useSendLogoutMutation();

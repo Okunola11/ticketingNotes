@@ -39,7 +39,6 @@ const NotesList = () => {
     } else {
       filteredIds = ids.filter((id) => entities[id].username === username);
     }
-    console.log(filteredIds);
     const tableData = filteredIds?.length
       ? filteredIds.map((noteId) => <Note key={noteId} noteId={noteId} />)
       : null;
