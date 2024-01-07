@@ -47,10 +47,17 @@ const NewNoteForm = ({ users }) => {
         <h2>Create a Note</h2>
         {/* || TITLE*/}
         <label htmlFor="title">Title</label>
-        <input type="text" id="title" value={title} onChange={onTitleChange} />
+        <input
+          className="form__input"
+          type="text"
+          id="title"
+          value={title}
+          onChange={onTitleChange}
+        />
         {/* || TEXT*/}
         <label htmlFor="text">Text</label>
         <textarea
+          className="form__text"
           name="text"
           id="text"
           value={text}
@@ -59,8 +66,9 @@ const NewNoteForm = ({ users }) => {
           rows="10"
         ></textarea>
         {/* || USER*/}
-        <label htmlFor="userId">User</label>
+        <label htmlFor="userId">Username</label>
         <select
+          className="form__roles"
           name="userId"
           id="userId"
           value={userId}

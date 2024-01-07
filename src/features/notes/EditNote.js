@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectNotesById } from "./NotesApiSlice";
 import { selectAllUsers } from "../users/usersApiSlice";
 import { useParams } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 import EditNoteForm from "./EditNoteForm";
 
@@ -14,7 +15,7 @@ const EditNote = () => {
     note && users ? (
       <EditNoteForm note={note} users={users} />
     ) : (
-      <p>Loading...</p>
+      <PulseLoader color={"#FFF"} />
     );
 
   return content;

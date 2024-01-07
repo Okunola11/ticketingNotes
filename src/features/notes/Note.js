@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { selectNotesById } from "./NotesApiSlice";
-
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
 

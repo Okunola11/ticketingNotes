@@ -4,6 +4,7 @@ import { useRefreshMutation } from "./authApiSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "./authSlice";
 import { Outlet, Link } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 const PersistLogin = () => {
   const effectRan = useRef(false);
@@ -39,7 +40,7 @@ const PersistLogin = () => {
     content = <Outlet />;
   } else if (isLoading) {
     console.log("Loading..");
-    content = <p>Loading...</p>;
+    content = <PulseLoader color={"#FFF"} />;
   } else if (isError) {
     console.log("isError");
     content = (

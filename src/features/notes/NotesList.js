@@ -1,9 +1,12 @@
 import { useGetNotesQuery } from "./NotesApiSlice";
 import Note from "./Note";
-
 import useAuth from "../../hooks/useAuth";
+import { PulseLoader } from "react-spinners";
+import useTitle from "../../hooks/useTitle";
 
 const NotesList = () => {
+  useTitle("techNotes: Notes List");
+
   const { username, isManager, isAdmin } = useAuth();
 
   const {
@@ -20,7 +23,7 @@ const NotesList = () => {
 
   let content;
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <PulseLoader color={"#FFF"} />;
   }
 
   if (isError) {

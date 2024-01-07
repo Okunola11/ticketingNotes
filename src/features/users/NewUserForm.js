@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
   faTimes,
   faInfoCircle,
+  faSave,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { useCreateNewUserMutation } from "./usersApiSlice";
 import ROLES from "../../components/Roles";
 
@@ -72,9 +72,7 @@ const NewUserForm = () => {
       setPassword("");
       setMatchPassword("");
       setRoles([]);
-      setTimeout(() => {
-        navigate("/dash/users");
-      }, 5000);
+      navigate("/dash/users");
     }
   }, [isSuccess, navigate]);
 
@@ -91,12 +89,33 @@ const NewUserForm = () => {
     );
   });
 
+  const saveButton = (
+    <button
+      className="icon-button"
+      type="submit"
+      disabled={
+        !validUsername ||
+        !validMatchPassword ||
+        !validPassword ||
+        !roles.length ||
+        isLoading
+          ? true
+          : false
+      }
+    >
+      <FontAwesomeIcon icon={faSave} />
+    </button>
+  );
+
   const content = (
     <section className="newUser">
-      <h2 className="newUser__h1">Add New Users</h2>
       <p className={isError ? "errmsg" : "hide"}>{error?.data?.message}</p>
 
       <form onSubmit={handleSubmit} className="form">
+        <div className="form__div">
+          <h2 className="newUser__h1">Add New Users</h2>
+          {saveButton}
+        </div>
         {/*Username Form Input*/}
         <label className="form__label" htmlFor="username" aria-live="assertive">
           Username:
@@ -209,27 +228,6 @@ const NewUserForm = () => {
         >
           {rolesOption}
         </select>
-        <div className="form__buttin">
-          <button
-            disabled={
-              !validUsername ||
-              !validMatchPassword ||
-              !validPassword ||
-              !roles.length ||
-              isLoading
-                ? true
-                : false
-            }
-            className="form__button"
-          >
-            Add User
-          </button>
-        </div>
-
-        <p className="form__p">Already Registered?</p>
-        <p className="form__p">
-          <Link to="/login">Sign In</Link>
-        </p>
       </form>
     </section>
   );

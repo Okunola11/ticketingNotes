@@ -136,7 +136,7 @@ a:focus {
 }
 
 .dash-header__container--small {
-  max-width: 800px;
+  justify-content: flex-end;
 }
 
 .dash-header__nav {
@@ -152,6 +152,15 @@ a:focus {
   height: 40px;
   margin: 0.1rem 0;
   margin-right: 0.5rem;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  transform: scale(1.2);
+}
+
+.icon-button[disabled] {
+  visibility: hidden;
 }
 
 .dash-footer {
@@ -234,10 +243,6 @@ tr {
   flex-grow: 1;
   max-width: 800px;
   margin: 0 auto;
-
-  h2 {
-    background-color: var(--BGCOLOR);
-  }
 }
 
 .form {
@@ -253,6 +258,16 @@ tr {
 .form__input {
   padding: 0.5em;
   margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.form__roles {
+  padding: 0.3rem;
+  border-radius: 10px;
+}
+
+.form__text {
+  border-radius: 10px;
 }
 
 .form__select {
@@ -271,25 +286,16 @@ tr {
   height: 24px;
 }
 
-.form__buttin {
-  display: grid;
-  place-content: center;
-}
-
 .form__icon {
   width: 40px;
   height: 40px;
   margin-left: 0.5rem;
 }
 
-.form__button {
-  margin-bottom: 0.5em;
-  width: 100px;
-  height: 48px;
-  text-align: center;
-  color: #0f172a;
-  background-color: antiquewhite;
-  margin-top: 1rem;
+.form__div {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--BGCOLOR);
 }
 
 .form__p {
@@ -390,6 +396,10 @@ tr {
   .note__username {
     display: block;
   }
+
+  .dash-header__container--small {
+    max-width: 1050px;
+  }
 }
 
 /* || Login Page*/
@@ -401,7 +411,20 @@ tr {
   flex-flow: column nowrap;
   flex-grow: 1;
   max-width: 800px;
-  padding: 0.2rem;
+  margin: 0 1em;
+  padding: 1em 0;
+}
+
+.login__header {
+  border-bottom: 2px solid var(--BORDER-COLOR);
+  margin: 0 1em;
+  padding: 0.5em 0;
+}
+
+.login__footer {
+  border-top: 2px solid var(--BORDER-COLOR);
+  margin: 0 1em;
+  padding: 1em 0;
 }
 
 .login__form {

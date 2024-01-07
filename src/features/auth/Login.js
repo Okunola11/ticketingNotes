@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
 import usePersist from "../../hooks/usePersist";
+import { PulseLoader } from "react-spinners";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,14 +45,14 @@ const Login = () => {
       setPassword("");
       navigate("/dash");
     } catch (err) {
-      if (!err.originalStatus) {
+      if (!err.status) {
         setErrMsg("No response from server");
-      } else if (err.originalStatus === 400) {
+      } else if (err.status === 400) {
         setErrMsg("Missing username or password");
-      } else if (err.originalStatus === 401) {
+      } else if (err.status === 401) {
         setErrMsg("Unauthorized");
       } else {
-        setErrMsg("Login Failed");
+        setErrMsg(err.data?.message);
       }
       /*   errRef.current.focus(); */
     }
@@ -60,7 +60,10 @@ const Login = () => {
 
   const content = (
     <>
-      <header>
+      <header className="login__header">
+        <h1 className="login__h1">Employee Login</h1>
+      </header>
+      <main className="login">
         <p
           ref={errRef}
           className={errMsg ? "errmsg" : "offscreen"}
@@ -68,9 +71,6 @@ const Login = () => {
         >
           {errMsg}
         </p>
-        <h1 className="login__h1">Employee Login</h1>
-      </header>
-      <main className="login">
         <form className="login__form" onSubmit={handleSubmit}>
           <input
             className="login__input"
@@ -105,9 +105,12 @@ const Login = () => {
           </div>
         </form>
       </main>
+      <footer className="login__footer">
+        <Link to="/">Back to Home</Link>
+      </footer>
     </>
   );
 
-  return isLoading ? <p>Loading...</p> : content;
+  return isLoading ? <PulseLoader color={"#FFF"} /> : content;
 };
 export default Login;

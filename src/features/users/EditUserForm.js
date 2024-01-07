@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice";
 import ROLES from "../../components/Roles";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
 
