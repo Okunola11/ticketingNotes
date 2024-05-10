@@ -71,39 +71,66 @@ const Login = () => {
         >
           {errMsg}
         </p>
-        <form className="login__form" onSubmit={handleSubmit}>
-          <input
-            className="login__input"
-            type="text"
-            ref={userRef}
-            autoComplete="off"
-            placeholder="username"
-            required
-            value={username}
-            onChange={onUsernameChange}
-          />
-          <input
-            className="login__input"
-            type="password"
-            value={password}
-            required
-            placeholder="password"
-            onChange={onPasswordChange}
-          />
+        <article className="login__article">
+          <section className="login__info">
+            <h2>Hi, welcome 👋</h2>
+            <p className="login__info-p">
+              This primarily display brief information or updates for Employees
+              but I have decided to put in login credentials details for the
+              sole purpose of exploring and testing the application.
+            </p>
+            <h5>Login with the following credentials:</h5>
+            <div className="login-details-container">
+              <div className="login-details">
+                <div className="login-details__div">
+                  <p>Username: Rifle2</p>
+                  <p>Password: shot2</p>
+                  <p>Roles: Employee</p>
+                </div>
+                <div className="login-details__div">
+                  <p>Username: ChunLee</p>
+                  <p>Password: Aa1!</p>
+                  <p>Roles: Employee/Admin/Manager</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="login__form">
+            <form className="login__form-form" onSubmit={handleSubmit}>
+              <input
+                className="login__input"
+                type="text"
+                ref={userRef}
+                autoComplete="off"
+                placeholder="username"
+                required
+                value={username}
+                onChange={onUsernameChange}
+              />
+              <input
+                className="login__input"
+                type="password"
+                value={password}
+                required
+                placeholder="password"
+                onChange={onPasswordChange}
+              />
 
-          <button>Login</button>
+              <button className="login__button">Login</button>
 
-          <div className="form__active">
-            <label htmlFor="persist">Trust this device?</label>
-            <input
-              type="checkbox"
-              id="persist"
-              checked={persist}
-              onChange={handleToggle}
-              className="form__active--button"
-            />
-          </div>
-        </form>
+              <div className="form__active">
+                <label htmlFor="persist">Trust this device?</label>
+                <input
+                  type="checkbox"
+                  id="persist"
+                  checked={persist}
+                  onChange={handleToggle}
+                  className="form__active--button"
+                />
+              </div>
+            </form>
+          </section>
+        </article>
       </main>
       <footer className="login__footer">
         <Link to="/">Back to Home</Link>
