@@ -89,7 +89,7 @@ const Login = () => {
                 </div>
                 <div className="login-details__div">
                   <p>Username: ChunLee</p>
-                  <p>Password: Aa1!</p>
+                  <p>Password: Ab1!</p>
                   <p>Roles: Employee/Admin/Manager</p>
                 </div>
               </div>
